@@ -17,6 +17,11 @@ def main():
 def create_argument_parser():
     """make ArgumentParser object with necesary options"""
     argument_parser = argparse.ArgumentParser()
+    argument_parser.add_argument("-p", "--output-pdf", type=str, help="file for result output pdf file (*.pdf)")
+    argument_parser.add_argument("-t", "--output-txt", type=str, help="file for result output text file (*.txt)")
+    argument_parser.add_argument("-n", "--number-pages", type=int, help="number pages for grab (default 1000)")
+    argument_parser.add_argument("-c", "--cmp-after", type=int, help="number of pages, after which the last two pages "
+                                                                     "will be compared and if they equal - stop")
     return argument_parser
 
 
