@@ -5,6 +5,7 @@ __author__ = 'toly'
     from Amazon Kindle, Google Play and other books services
 """
 
+import os
 import sys
 import argparse
 
@@ -12,15 +13,22 @@ import argparse
 def main():
     """main function"""
 
+    # parse arguments
     parser = create_argument_parser()
-    arguments = parser.parse_args()
+    args = parser.parse_args()
 
-    try:
-        validate_args(arguments)
-    except GrabException as e:
-        print "Error: %s!" % e.message
-        print "For help run: ./grap.py -h"
-        return 1
+    # make new tmp dir
+    tmp_dir = '/tmp/%s/' % args.title
+    if os.path.exists(tmp_dir):
+        n = 0
+        while os.path.exists(tmp_dir):
+            n += 1
+            tmp_dir = '/tmp/%s%d/' % (args.title, n)
+    os.mkdir(tmp_dir)
+
+
+
+
 
 
 def create_argument_parser():
@@ -37,16 +45,6 @@ def create_argument_parser():
     argument_parser.add_argument("-c", "--cmp-after", type=int, help=help_for_cmp_after, default=3)
 
     return argument_parser
-
-
-class GrabException(Exception):
-    pass
-
-
-def validate_args(args):
-    """validate command line rguments"""
-
-    raise GrabException('zzz')
 
 
 def grabbing_screen(number_pages=None, cmp_pages_after=None):
