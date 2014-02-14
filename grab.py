@@ -32,7 +32,7 @@ def main():
     for page_number, page_image in enumerate(page_images):
         if 'txt' in args.formats:
             os.system('tesseract %s /tmp/out' % page_image)
-            os.system('more "===page #%d" >> %s.txt' % (page_number, args.title))
+            os.system('echo "===page #%d" >> %s.txt' % (page_number, args.title))
             os.system('more /tmp/out.txt >> %s.txt' % args.title)
 
     if 'pdf' in args.formats:
