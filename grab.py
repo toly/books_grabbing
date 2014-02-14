@@ -38,6 +38,9 @@ def main():
     if 'pdf' in args.formats:
         os.system("convert %spage*.png %s.pdf" % (tmp_dir, args.title))
 
+    os.system("rm -rf %s" % tmp_dir)
+    os.system("rm -f /tmp/out.txt")
+
     print 'Book grabbed'
 
 
