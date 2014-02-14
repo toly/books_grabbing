@@ -26,9 +26,17 @@ def main():
             tmp_dir = '/tmp/%s%d/' % (args.title, n)
     os.mkdir(tmp_dir)
 
+    page_images = grabbing_screen(tmp_dir, number_pages=args.number_pages, cmp_pages_after=args.cmp_after)
+    for page_number, page_image in enumerate(page_images):
+        if 'txt' in args.formats:
+            os.system('tesseract %s /tmp/out' % page_image)
+            os.system('more "===page #%d" >> %s.txt' % (page_number, args.title))
+            os.system('more /tmp/out.txt >> %s.txt' % args.title)
 
+    if 'pdf' in args.formats:
+        os.system("convert %s*.png %s.pdf" % (tmp_dir, args.title))
 
-
+    print 'Book grabbed'
 
 
 def create_argument_parser():
@@ -47,7 +55,7 @@ def create_argument_parser():
     return argument_parser
 
 
-def grabbing_screen(number_pages=None, cmp_pages_after=None):
+def grabbing_screen(tmp_dir, number_pages=None, cmp_pages_after=None):
     """
         grabbing screen, paging and yield images
 
