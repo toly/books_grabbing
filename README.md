@@ -5,9 +5,13 @@ Python script for grabbing (and optional recognize) books from Amazon, Google Pl
 
 P.S. Now, script work only on Mac OS.
 
+## How to use
+
+[http://www.youtube.com/watch?v=BUBLhS6gu6E](http://www.youtube.com/watch?v=BUBLhS6gu6E)
 
 ## Install requirements
 
+    $ brew install screencapture
     $ brew install tesseract
     $ pip install pyobjc-core
     $ pip install pyobjc
