@@ -11,7 +11,7 @@ P.S. Now, script work only on Mac OS.
 
 ## Install requirements
 
-    $ brew install screencapture
+    $ brew install imagemagick
     $ brew install tesseract
     $ pip install pyobjc-core
     $ pip install pyobjc
